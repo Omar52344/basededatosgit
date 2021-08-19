@@ -1,0 +1,96 @@
+//////empleado 
+id empleado
+nombre
+cargo
+
+
+
+
+
+calzado
+
+id calzado
+estado, categoría, 
+color  
+tallas disponibles,
+cantidad disponible
+fecha de creado
+fecha de ultima actualización
+usuario que hizo el registro 
+ultimo usuario en modificar el registro.
+
+create data base inventario
+ use database inventario////
+
+
+CREATE TABLE `inventario`.`Empleado` (
+  `idempleado` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `cargo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idempleado`));
+  
+  
+  
+  CREATE TABLE `inventario`.`Calzado` (
+  `idcalzado` INT NOT NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `categoria` VARCHAR(45) NOT NULL,
+  `color` VARCHAR(45) NOT NULL,
+  `tallasdisponibles` VARCHAR(45) NOT NULL,
+  `cantidaddisponible` INT NOT NULL,
+  `fechacreado` VARCHAR(45) NOT NULL,
+  `fechaultimaactualizacion` VARCHAR(45) NOT NULL,
+  `usuariocreacion` VARCHAR(45) NOT NULL,
+  `ultimoenmodificar` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idcalzado`));
+  
+  
+  CREATE TABLE `inventario`.`calzado` (
+  `idcalzado` INT NOT NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `categoria` VARCHAR(45) NOT NULL,
+  `color` VARCHAR(45) NOT NULL,
+  `tallasdisponibles` VARCHAR(45) NOT NULL,
+  `cantidaddisponible` VARCHAR(45) NOT NULL,
+  `fechacreado` VARCHAR(45) NOT NULL,
+  `fechaultimaactualizacion` VARCHAR(45) NOT NULL,
+  `usuariocreacion` INT NOT NULL,
+  `ultimoenmodificar` INT NOT NULL,
+  PRIMARY KEY (`idcalzado`),
+  INDEX `usuariocreacion_idx` (`usuariocreacion` ASC, `ultimoenmodificar` ASC) VISIBLE,
+  CONSTRAINT `usuariocreacion`
+    FOREIGN KEY (`usuariocreacion` , `ultimoenmodificar`)
+    REFERENCES `inventario`.`Empleado` (`idempleado` , `idempleado`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+    
+    
+    
+    CREATE TABLE `inventario`.`calzado` (
+  `idcalzado` INT NOT NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `categoria` VARCHAR(45) NOT NULL,
+  `color` VARCHAR(45) NOT NULL,
+  `tallasdisponibles` VARCHAR(45) NOT NULL,
+  `cantidaddisponible` VARCHAR(45) NOT NULL,
+  `fechacreado` VARCHAR(45) NOT NULL,
+  `fechaultimaactualizacion` VARCHAR(45) NOT NULL,
+  `usuariocreacion` INT NOT NULL,
+  `ultimoenmodificar` INT NOT NULL,
+  PRIMARY KEY (`idcalzado`),
+  INDEX `usuariocreacion_idx` (`usuariocreacion` ASC) VISIBLE,
+  INDEX `ultimoenmodificar_idx` (`ultimoenmodificar` ASC) VISIBLE,
+  CONSTRAINT `usuariocreacion`
+    FOREIGN KEY (`usuariocreacion`)
+    REFERENCES `inventario`.`Empleado` (`idempleado`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `ultimoenmodificar`
+    FOREIGN KEY (`ultimoenmodificar`)
+    REFERENCES `inventario`.`Empleado` (`idempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
